@@ -19,6 +19,7 @@ _MODELS = (
     "medium",
     "large-v1",
     "large-v2",
+    "whisper-th",
 )
 
 
@@ -61,8 +62,10 @@ def download_model(
         raise ValueError(
             "Invalid model size '%s', expected one of: %s" % (size, ", ".join(_MODELS))
         )
-
-    repo_id = "guillaumekln/faster-whisper-%s" % size
+    if size == "whisper-th":
+        repo_id = "mort666/faster-whisper-large-v2-th"
+    else:
+        repo_id = "guillaumekln/faster-whisper-%s" % size
 
     allow_patterns = [
         "config.json",
